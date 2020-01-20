@@ -25,7 +25,7 @@ export default class Request {
   async getPage(pageName) {
     try {
       const response = await this.getUrl(
-        `https://www.reddit.com/r/${this.subreddit}/wiki/${pageName}.json`
+        `https://api.reddit.com/r/${this.subreddit}/wiki/${pageName}.json`
       );
       const { data: page } = response;
       const valid = page && page.kind === 'wikipage' && page.data.content_md;
@@ -46,7 +46,7 @@ export default class Request {
   async getPages() {
     try {
       const response = await this.getUrl(
-        `https://www.reddit.com/r/${this.subreddit}/wiki/pages.json`
+        `https://api.reddit.com/r/${this.subreddit}/wiki/pages.json`
       );
       const { data: pages } = response;
       const valid =
