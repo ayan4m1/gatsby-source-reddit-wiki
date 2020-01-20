@@ -12,7 +12,7 @@ export default class Request {
   }
 
   async getUrl(url) {
-    this.reporter.verbose(`Queuing request for ${url}`);
+    this.reporter.verbose(`queuing request for ${url}`);
     return await this.rateLimiter.schedule(() =>
       axios.get(url, {
         headers: {
@@ -30,7 +30,7 @@ export default class Request {
       const { data: page } = response;
       const valid = page && page.kind === 'wikipage' && page.data.content_md;
 
-      this.reporter.info(`${valid ? 'Parsed' : 'Failed to parse'} ${pageName}`);
+      this.reporter.info(`${valid ? 'parsed' : 'failed to parse'} ${pageName}`);
       return valid
         ? {
             path: pageName,
@@ -56,7 +56,7 @@ export default class Request {
       }
 
       this.reporter.info(
-        `Fetching ${pages.data.length} wiki pages for /r/${this.subreddit}...`
+        `gatsby-source-reddit-wiki ${pages.data.length} wiki pages for /r/${this.subreddit}...`
       );
       return (
         await Promise.all(

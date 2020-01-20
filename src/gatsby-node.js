@@ -9,7 +9,7 @@ exports.sourceNodes = async ({ actions, reporter }, options) => {
     const pages = await request.getPages();
 
     reporter.info(
-      `gatsby-source-reddit-wiki fetched ${pages.length} pages from ${subreddit}`
+      `gatsby-source-reddit-wiki fetched ${pages.length} pages for /r/${subreddit}`
     );
     pages.forEach(page => createNode(transformPageNode(page)));
   } catch (error) {
