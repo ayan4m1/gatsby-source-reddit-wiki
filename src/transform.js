@@ -5,15 +5,21 @@ export const types = {
   user: 'User'
 };
 
-const { createNodeFactory, generateNodeId } = createNodeHelpers({
+const { createNodeFactory } = createNodeHelpers({
   typePrefix: 'RedditWiki'
 });
 
+/* eslint-disable camelcase */
 export const transformPageNode = createNodeFactory(types.page, page => {
+  const { id, revision_by } = page;
+  const path = id.split('/');
+
   return {
     ...page,
-    revisedBy: generateNodeId(types.user, page.revised_by)
+    path,
+    revision_by: revision_by.data
   };
 });
+/* eslint-enable camelcase */
 
 export const transformUserNode = createNodeFactory(types.user, user => user);
