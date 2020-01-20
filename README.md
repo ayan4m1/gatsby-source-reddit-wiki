@@ -76,7 +76,7 @@ Only fetch pages most recently updated by moderators:
 
 ## Configuration
 
-| Key       | Required | Type  | Description                                    |
-| --------- | -------- | ----- | ---------------------------------------------- |
-| subreddit | String   | **Y** | Subreddit name without `/r/` prefix            |
-| minTime   | Number   | N     | Minimum time to wait between API request in ms |
+| Key       | Type   | Required | Description                                    |
+| --------- | ------ | -------- | ---------------------------------------------- |
+| subreddit | String | **Y**    | Subreddit name without `/r/` prefix            |
+| minTime   | Number | N        | Minimum time to wait between API request in ms |
