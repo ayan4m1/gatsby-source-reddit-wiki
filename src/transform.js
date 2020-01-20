@@ -16,7 +16,7 @@ export const transformPageNode = createNodeFactory(types.page, page => {
 
   return {
     ...page,
-    path: sections,
+    path_sections: sections,
     revision_by: revision_by.data,
     internal: {
       type: generateTypeName(types.page),
