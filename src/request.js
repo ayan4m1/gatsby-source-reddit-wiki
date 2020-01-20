@@ -33,7 +33,7 @@ export default class Request {
       this.reporter.info(`${valid ? 'Parsed' : 'Failed to parse'} ${pageName}`);
       return valid
         ? {
-            id: pageName,
+            path: pageName,
             ...page.data
           }
         : null;

@@ -11,13 +11,16 @@ const { createNodeFactory } = createNodeHelpers({
 
 /* eslint-disable camelcase */
 export const transformPageNode = createNodeFactory(types.page, page => {
-  const { id, revision_by } = page;
-  const path = id.split('/');
+  const { path, revision_by } = page;
+  const sections = path.split('/');
 
   return {
     ...page,
-    path,
-    revision_by: revision_by.data
+    path: sections,
+    revision_by: revision_by.data,
+    internal: {
+      mediaType: 'text/markdown'
+    }
   };
 });
 /* eslint-enable camelcase */
