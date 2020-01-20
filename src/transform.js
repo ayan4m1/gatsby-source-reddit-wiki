@@ -5,13 +5,13 @@ export const types = {
   user: 'User'
 };
 
-const { createNodeFactory } = createNodeHelpers({
+const { createNodeFactory, generateTypeName } = createNodeHelpers({
   typePrefix: 'RedditWiki'
 });
 
 /* eslint-disable camelcase */
 export const transformPageNode = createNodeFactory(types.page, page => {
-  const { path, revision_by } = page;
+  const { path, revision_by, content_md } = page;
   const sections = path.split('/');
 
   return {
@@ -19,7 +19,9 @@ export const transformPageNode = createNodeFactory(types.page, page => {
     path: sections,
     revision_by: revision_by.data,
     internal: {
-      mediaType: 'text/markdown'
+      type: generateTypeName(types.page),
+      mediaType: 'text/markdown',
+      content: content_md
     }
   };
 });
