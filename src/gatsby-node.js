@@ -1,4 +1,4 @@
-import Reddit from 'reddit';
+import axios from 'axios';
 import { createHash } from 'crypto';
 
 const hashData = data =>
@@ -6,11 +6,15 @@ const hashData = data =>
     .update(JSON.stringify(data))
     .digest('hex');
 
-const fetchPages = async reddit => {
-  const pages = await reddit.get('/r/diyejuice/wiki/pages');
+const fetchPages = async subreddit => {
+  const pages = await axios({
+    url: `https://api.reddit.com/r/${subreddit}/wiki/pages.json`,
+    method: 'GET'
+  });
 
-  // eslint-disable-next-line
-  console.dir(pages);
+  if (pages && pages.kind === 'wikipagelisting') {
+    return pages.data;
+  }
 };
 
 const transformPage = async page => ({
@@ -25,10 +29,9 @@ const transformPage = async page => ({
   }
 });
 
-exports.sourceNodes = async ({ actions }, options) => {
+exports.sourceNodes = async ({ actions }, { subreddit }) => {
   const { createNode } = actions;
-  const reddit = new Reddit(options);
-  const pages = await fetchPages(reddit);
+  const pages = await fetchPages(subreddit);
 
   if (pages) {
     pages.forEach(page => createNode(transformPage(page)));
