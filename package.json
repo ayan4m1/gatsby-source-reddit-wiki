@@ -1,7 +1,7 @@
 {
   "name": "gatsby-source-reddit-wiki",
   "version": "0.1.0",
-  "description": "Gatsby source plugin to pull data from a Reddit wiki",
+  "description": "Gatsby source plugin for pulling data from a Reddit wiki",
   "author": "ayan4m1 <andrew@bulletlogic.com>",
   "license": "MIT",
   "keywords": [
