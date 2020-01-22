@@ -23,7 +23,8 @@
     "@babel/runtime": "^7.8.3",
     "axios": "^0.19.1",
     "bottleneck": "^2.19.5",
-    "gatsby-node-helpers": "^0.3.0"
+    "gatsby-node-helpers": "^0.3.0",
+    "qs-stringify": "^1.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.3",

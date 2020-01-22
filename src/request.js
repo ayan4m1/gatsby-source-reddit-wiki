@@ -1,31 +1,33 @@
-import axios from 'axios';
-import Bottleneck from 'bottleneck';
+import Reddit from './reddit';
 
 export default class Request {
-  constructor({ subreddit, minTime = 1000 }, reporter) {
-    this.rateLimiter = new Bottleneck({
-      maxConcurrent: 1,
-      minTime
-    });
+  constructor(
+    { username, password, appId, appSecret, subreddit, minTime = 1000 },
+    reporter
+  ) {
+    try {
+      this.reddit = new Reddit({
+        username,
+        password,
+        appId,
+        appSecret,
+        rateLimiter: {
+          maxConcurrent: 1,
+          minTime
+        }
+      });
+    } catch (error) {
+      return reporter.panicOnBuild(error);
+    }
+
     this.reporter = reporter;
     this.subreddit = subreddit;
   }
 
-  async getUrl(url) {
-    this.reporter.verbose(`queuing request for ${url}`);
-    return await this.rateLimiter.schedule(() =>
-      axios.get(url, {
-        headers: {
-          'User-Agent': 'GatsbySourceRedditWiki/0.1.0'
-        }
-      })
-    );
-  }
-
   async getPage(pageName) {
     try {
-      const response = await this.getUrl(
-        `https://api.reddit.com/r/${this.subreddit}/wiki/${pageName}.json`
+      const response = await this.reddit.request(
+        `/r/${this.subreddit}/wiki/${pageName}?`
       );
       const { data: page } = response;
       const valid = page && page.kind === 'wikipage' && page.data.content_md;
@@ -45,8 +47,8 @@ export default class Request {
 
   async getPages() {
     try {
-      const response = await this.getUrl(
-        `https://api.reddit.com/r/${this.subreddit}/wiki/pages.json`
+      const response = await this.reddit.request(
+        `/r/${this.subreddit}/wiki/pages?`
       );
       const { data: pages } = response;
       const valid =
