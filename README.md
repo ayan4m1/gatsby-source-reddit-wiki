@@ -1,6 +1,6 @@
 # gatsby-source-reddit-wiki
 
-Source plugin for pulling data from a public Reddit wiki using the Reddit API.
+Source plugin for pulling data from a public or private Reddit wiki using the Reddit API.
 
 ## Features
 
@@ -9,6 +9,16 @@ Source plugin for pulling data from a public Reddit wiki using the Reddit API.
 ```
 $> npm install --save gatsby-source-reddit-wiki
 ```
+
+## API Setup
+
+1. Go to [Reddit's apps page](https://www.reddit.com/prefs/apps)
+2. Click "create app"
+3. Enter any name
+4. Select "script" application type
+5. Enter anything for description, about URI, and redirect URI
+6. Click "create app"
+7. Ensure the user you will use to authenticate has been granted access to the app
 
 ## Usage
 
@@ -22,6 +32,11 @@ module.exports = {
     {
       resolve: 'gatsby-source-reddit-wiki',
       options: {
+        // the following four fields are REQUIRED
+        username: 'spez',
+        password: 'ReallySecure',
+        appId: '8sjcAWF_98VAS',
+        appSecret: 'ck7S_ACJiobijq2v9asjiv',
         // required name of subreddit which has its wiki enabled
         // do not include the /r/ prefix
         subreddit: 'aww',
@@ -76,7 +91,13 @@ Only fetch pages most recently updated by moderators:
 
 ## Configuration
 
+**NOTE**: You cannot use this plugin with a Reddit account that has 2FA enabled.
+
 | Key       | Type   | Required | Description                                    |
 | --------- | ------ | -------- | ---------------------------------------------- |
+| username  | String | **Y**    | Reddit username                                |
+| password  | String | **Y**    | Reddit password                                |
+| appId     | String | **Y**    | Reddit-generated app ID                        |
+| appSecret | String | **Y**    | Reddit-generated app secret                    |
 | subreddit | String | **Y**    | Subreddit name without `/r/` prefix            |
 | minTime   | Number | N        | Minimum time to wait between API request in ms |
