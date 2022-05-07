@@ -11,7 +11,7 @@ exports.sourceNodes = async ({ actions, reporter }, options) => {
     reporter.info(
       `gatsby-source-reddit-wiki fetched ${pages.length} pages for /r/${subreddit}`
     );
-    pages.forEach(page => createNode(transformPageNode(page)));
+    pages.forEach((page) => createNode(transformPageNode(page)));
   } catch (error) {
     reporter.panicOnBuild(error);
   }

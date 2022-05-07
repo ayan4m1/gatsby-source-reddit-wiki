@@ -1,4 +1,4 @@
-import createNodeHelpers from 'gatsby-node-helpers';
+import { createNodeHelpers } from 'gatsby-node-helpers';
 
 export const types = {
   page: 'Page',
@@ -10,7 +10,7 @@ const { createNodeFactory, generateTypeName } = createNodeHelpers({
 });
 
 /* eslint-disable camelcase */
-export const transformPageNode = createNodeFactory(types.page, page => {
+export const transformPageNode = createNodeFactory(types.page, (page) => {
   const { path, revision_by, content_md } = page;
   const sections = path.split('/');
 
@@ -27,4 +27,4 @@ export const transformPageNode = createNodeFactory(types.page, page => {
 });
 /* eslint-enable camelcase */
 
-export const transformUserNode = createNodeFactory(types.user, user => user);
+export const transformUserNode = createNodeFactory(types.user, (user) => user);

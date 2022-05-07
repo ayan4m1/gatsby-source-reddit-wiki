@@ -63,7 +63,7 @@ export default class Request {
       );
       return (
         await Promise.all(
-          pages.data.map(async pageName => {
+          pages.data.map(async (pageName) => {
             const page = await this.getPage(pageName);
 
             return page ? [page] : [];
