@@ -17,27 +17,27 @@
     "node": ">=8.0.0"
   },
   "peerDependencies": {
-    "gatsby": "^2.0.15"
+    "gatsby": ">=4.13.1"
   },
   "dependencies": {
-    "@babel/runtime": "^7.8.3",
-    "axios": "^0.19.1",
+    "@babel/runtime": "^7.17.9",
+    "axios": "^0.27.2",
     "bottleneck": "^2.19.5",
-    "gatsby-node-helpers": "^0.3.0",
-    "qs-stringify": "^1.2.0"
+    "gatsby-node-helpers": "^1.2.1",
+    "qs-stringify": "^1.2.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.3",
-    "@babel/core": "^7.8.3",
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.17.10",
     "@babel/eslint-parser": "^7.17.0",
-    "babel-preset-gatsby-package": "^0.2.15",
-    "cross-env": "^6.0.3",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.9.0",
-    "eslint-plugin-import": "^2.20.0",
-    "eslint-plugin-prettier": "^3.1.2",
-    "husky": "^4.0.10",
-    "lint-staged": "^10.0.1",
-    "prettier": "^1.19.1"
+    "babel-preset-gatsby-package": "^2.13.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.15.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.4.1",
+    "prettier": "^2.6.2"
   }
 }
