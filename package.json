@@ -17,7 +17,7 @@
     "node": ">=8.0.0"
   },
   "peerDependencies": {
-    "gatsby": ">=4.14.0"
+    "gatsby": "4.x"
   },
   "dependencies": {
     "@babel/runtime": "^7.17.9",
